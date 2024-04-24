@@ -40,7 +40,9 @@ nav ul li a:hover {
 }
 main {
     padding: 20px 0;
+    padding-bottom: 50px; /* Adjust to the height of your footer */
 }
+
 section {
     margin-bottom: 20px;
     background: white;
