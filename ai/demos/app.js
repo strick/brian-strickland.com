@@ -1,3 +1,9 @@
+
+window.addEventListener('DOMContentLoaded', () => {
+    var audio = document.getElementById('speechDisplay');
+    audio.play();
+});
+
 document.getElementById('generateBtn').addEventListener('click', function() {
     fetch('/generate', { method: 'POST' })
         .then(response => response.json())
