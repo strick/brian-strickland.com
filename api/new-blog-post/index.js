@@ -1,6 +1,8 @@
 const axios = require("axios");
 
 module.exports = async function (context, req) {
+  
+  try {
   const { title, content, slug, date } = req.body;
 
   if (!title || !content) {
@@ -32,7 +34,6 @@ module.exports = async function (context, req) {
 </body>
 </html>`;
 
-  try {
     const githubToken = process.env.AI_BLOG_GITHUB_TOKEN;
     const repo = "strick/brian-strickland.com";
     const branch = "main";
