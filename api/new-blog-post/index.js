@@ -2,7 +2,8 @@ const axios = require("axios");
 
 module.exports = async function (context, req) {
   const { title, content, slug, date } = req.body;
-
+    context.res = { status: 400, body: "Missing title or content" };
+  return;
   if (!title || !content) {
     context.res = { status: 400, body: "Missing title or content" };
     return;
