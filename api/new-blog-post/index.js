@@ -33,7 +33,7 @@ module.exports = async function (context, req) {
 </html>`;
 
   try {
-    const githubToken = process.env.GITHUB_TOKEN;
+    const githubToken = process.env.AI_BLOG_GITHUB_TOKEN;
     const repo = "your-username/your-repo";
     const branch = "main";
 
