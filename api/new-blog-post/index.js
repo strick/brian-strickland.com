@@ -61,9 +61,9 @@ module.exports = async function (context, req) {
       }
     );
 
-    context.res = { status: 200, body: `✅ Blog post committed as ${filename}` };
+    context.res = { status: 200, body: `Blog post committed as ${filename}` };
   } catch (err) {
     context.log.error(err);
-    context.res = { status: 500, body: "❌ Failed to commit post." };
+    context.res = { status: 500, body: "Failed to commit post." };
   }
 };
