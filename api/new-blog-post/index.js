@@ -4,6 +4,14 @@ module.exports = async function (context, req) {
   try {
     context.log("Function triggered");
 
+    const API_KEY = process.env.BLOG_API_KEY;
+    const incomingKey = req.headers["x-api-key"];
+
+    if (!incomingKey || incomingKey !== API_KEY) {
+      context.res = { status: 403, body: "Forbidden: Invalid API Key" };
+      return;
+    }
+
     const { title, content, slug, date } = req.body || {};
     context.log("Received payload:", { title, slug, date });
 
