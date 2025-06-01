@@ -2,8 +2,7 @@ const axios = require("axios");
 
 module.exports = async function (context, req) {
   const { title, content, slug, date } = req.body;
-    context.res = { status: 400, body: "Missing title or content" };
-  return;
+
   if (!title || !content) {
     context.res = { status: 400, body: "Missing title or content" };
     return;
@@ -35,7 +34,7 @@ module.exports = async function (context, req) {
 
   try {
     const githubToken = process.env.AI_BLOG_GITHUB_TOKEN;
-    const repo = "your-username/your-repo";
+    const repo = "strick/brian-strickland.com";
     const branch = "main";
 
     const getSHAResponse = await axios.get(
