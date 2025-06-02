@@ -65,29 +65,12 @@ ${content}
       }
     );
 
-    // Trigger GitHub Actions workflow
-    const triggerRes = await axios.post(
-      `https://api.github.com/repos/${repo}/actions/workflows/deploy.yml/dispatches`,
-      { ref: branch },
-      {
-        headers: {
-          Authorization: `token ${githubToken}`,
-          Accept: "application/vnd.github.v3+json"
-        },
-        validateStatus: (status) => status < 500 // Don't throw on 204
-      }
-    );
-
-    // Log the status of workflow trigger
-    context.log("GitHub Actions trigger status:", triggerRes.status);
-
     // Clean response for curl
     context.res = {
       status: 200,
       body: {
         message: `Blog post saved and deployment triggered.`,
-        filename: filename,
-        githubActionStatus: triggerRes.status
+        filename: filename
       }
     };
 
