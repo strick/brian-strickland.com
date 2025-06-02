@@ -27,26 +27,28 @@ module.exports = async function (context, req) {
     const postUrl = `/blog/${today}-${time}-${safeSlug}.html`;
 
 
-    const html = `<!DOCTYPE html>
+const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title}</title>
-  <meta name="description" content="${title}" />
-  <style>
-    body { font-family: Georgia, serif; padding: 2rem; max-width: 800px; margin: auto; background: #fff; color: #333; }
-    h1 { font-size: 2em; color: #007acc; }
-    p { line-height: 1.6; }
-    a { color: #007acc; text-decoration: none; }
-  </style>
+  <link rel="stylesheet" href="/blog/blog.css" />
 </head>
 <body>
-  <h1>${title}</h1>
-  <p><strong>Date:</strong> ${today}</p>
-  ${content}
-  <p><a href="/blog/index.html">← Back to blog</a></p>
+  <header>
+    <h1>${title}</h1>
+    <p class="date">${today}</p>
+  </header>
+  <main>
+    ${content}
+    <footer>
+      <p><a href="/blog/index.html">← Back to Blog</a></p>
+    </footer>
+  </main>
 </body>
 </html>`;
+
 
     const githubToken = process.env.AI_BLOG_GITHUB_TOKEN;
     const repo = "strick/brian-strickland.com";
