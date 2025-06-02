@@ -26,7 +26,6 @@ module.exports = async function (context, req) {
     const safeSlug = slug || title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]/g, "");
     const filename = `content/blog/${today}-${time}-${safeSlug}.md`;
 
-    // Hugo-style Markdown with front matter
     const markdown = `---
 title: "${title}"
 date: "${today}T${time.slice(0, 2)}:${time.slice(2)}:00"
@@ -40,6 +39,7 @@ ${content}
     const repo = "strick/brian-strickland.com";
     const branch = "main";
 
+    // Check if file exists (to get SHA)
     const fileCheck = await axios.get(
       `https://api.github.com/repos/${repo}/contents/${filename}`,
       {
@@ -51,6 +51,7 @@ ${content}
     const fileExists = fileCheck.status === 200;
     const sha = fileExists ? fileCheck.data.sha : undefined;
 
+    // Commit the blog post file
     await axios.put(
       `https://api.github.com/repos/${repo}/contents/${filename}`,
       {
@@ -64,9 +65,23 @@ ${content}
       }
     );
 
+    // Trigger GitHub Actions workflow
+    await axios.post(
+      `https://api.github.com/repos/${repo}/actions/workflows/deploy.yml/dispatches`,
+      {
+        ref: branch
+      },
+      {
+        headers: {
+          Authorization: `token ${githubToken}`,
+          Accept: "application/vnd.github.v3+json"
+        }
+      }
+    );
+
     context.res = {
       status: 200,
-      body: `Blog Markdown saved as: ${filename}`
+      body: `Blog post saved and deployment triggered: ${filename}`
     };
 
   } catch (err) {
