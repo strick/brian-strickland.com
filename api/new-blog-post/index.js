@@ -44,7 +44,7 @@ module.exports = async function (context, req) {
   <h1>${title}</h1>
   <p><strong>Date:</strong> ${today}</p>
   ${content}
-  <p><a href="/index.html">← Back to blog</a></p>
+  <p><a href="/blog/index.html">← Back to blog</a></p>
 </body>
 </html>`;
 
