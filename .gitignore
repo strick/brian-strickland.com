@@ -1,0 +1,18 @@
+# Hugo build output
+/public/
+/resources/
+/hugo_stats.json
+
+# Hugo cache
+/.hugo_build.lock
+
+# OS/System files
+.DS_Store
+Thumbs.db
+
+# VS Code / IDE files
+.vscode/
+.idea/
+
+# Node / npm (if you ever install themes with npm)
+node_modules/
