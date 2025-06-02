@@ -18,10 +18,14 @@ module.exports = async function (context, req) {
       return;
     }
 
-    const today = date || new Date().toISOString().split("T")[0];
+    const now = new Date();
+    const today = date || now.toISOString().split("T")[0];
+    const time = `${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}`;
+
     const safeSlug = slug || title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]/g, "");
-    const filename = `blog/${today}-${safeSlug}.html`;
-    const postUrl = `/blog/${today}-${safeSlug}.html`;
+    const filename = `blog/${today}-${time}-${safeSlug}.html`;
+    const postUrl = `/blog/${today}-${time}-${safeSlug}.html`;
+
 
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -74,7 +78,7 @@ module.exports = async function (context, req) {
 
     // Update index.html
     const indexRes = await axios.get(
-      `https://api.github.com/repos/${repo}/contents/index.html`,
+      `https://api.github.com/repos/${repo}/contents/blog/index.html`,
       {
         headers: { Authorization: `token ${githubToken}` }
       }
@@ -89,7 +93,7 @@ module.exports = async function (context, req) {
     );
 
     await axios.put(
-      `https://api.github.com/repos/${repo}/contents/index.html`,
+      `https://api.github.com/repos/${repo}/contents/blog/index.html`,
       {
         message: `Add blog entry to index.html: ${title}`,
         content: Buffer.from(updatedIndexHtml).toString("base64"),
