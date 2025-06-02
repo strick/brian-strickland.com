@@ -20,90 +20,44 @@ module.exports = async function (context, req) {
 
     const now = new Date();
     const today = date || now.toISOString().split("T")[0];
-   
     const estTime = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
     const time = `${String(estTime.getHours()).padStart(2, '0')}${String(estTime.getMinutes()).padStart(2, '0')}`;
 
-
     const safeSlug = slug || title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]/g, "");
-    const filename = `blog/${today}-${time}-${safeSlug}.html`;
-    const postUrl = `/blog/${today}-${time}-${safeSlug}.html`;
+    const filename = `content/blog/${today}-${time}-${safeSlug}.md`;
 
+    // Hugo-style Markdown with front matter
+    const markdown = `---
+title: "${title}"
+date: "${today}T${time.slice(0, 2)}:${time.slice(2)}:00"
+slug: "${safeSlug}"
+---
 
-const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${title}</title>
-  <link rel="stylesheet" href="/blog/blog.css" />
-</head>
-<body>
-  <header>
-    <h1>${title}</h1>
-    <p class="date">${today} - ${time}</p>
-  </header>
-  <main>
-    ${content}
-    <footer>
-      <p><a href="/blog/index.html">← Back to Blog</a></p>
-    </footer>
-  </main>
-</body>
-</html>`;
-
+${content}
+`;
 
     const githubToken = process.env.AI_BLOG_GITHUB_TOKEN;
     const repo = "strick/brian-strickland.com";
     const branch = "main";
 
-    // Create or update blog post file
-    const postSHARes = await axios.get(
+    const fileCheck = await axios.get(
       `https://api.github.com/repos/${repo}/contents/${filename}`,
       {
         headers: { Authorization: `token ${githubToken}` },
         validateStatus: (status) => status < 500,
       }
     );
-    const postExists = postSHARes.status === 200;
-    const postSHA = postExists ? postSHARes.data.sha : undefined;
+
+    const fileExists = fileCheck.status === 200;
+    const sha = fileExists ? fileCheck.data.sha : undefined;
 
     await axios.put(
       `https://api.github.com/repos/${repo}/contents/${filename}`,
       {
-        message: postExists ? `Update ${filename}` : `Add ${filename}`,
-        content: Buffer.from(html).toString("base64"),
+        message: fileExists ? `Update ${filename}` : `Add ${filename}`,
+        content: Buffer.from(markdown).toString("base64"),
         branch,
-        ...(postSHA && { sha: postSHA })
-      },
-      {
-        headers: { Authorization: `token ${githubToken}` }
-      }
-    );
-
-    // Update index.html
-    const indexRes = await axios.get(
-      `https://api.github.com/repos/${repo}/contents/blog/index.html`,
-      {
-        headers: { Authorization: `token ${githubToken}` }
-      }
-    );
-
-    const indexHtmlDecoded = Buffer.from(indexRes.data.content, 'base64').toString('utf-8');
-    const newEntry = `<!-- New blog posts will be listed here --><li><a href="${postUrl}">${title}</a></li>\n    `;
-
-    const updatedIndexHtml = indexHtmlDecoded.replace(
-      `<!-- New blog posts will be listed here -->`,
-      newEntry
-    );
-
-    await axios.put(
-      `https://api.github.com/repos/${repo}/contents/blog/index.html`,
-      {
-        message: `Add blog entry to index.html: ${title}`,
-        content: Buffer.from(updatedIndexHtml).toString("base64"),
-        branch,
-        sha: indexRes.data.sha
+        ...(sha && { sha })
       },
       {
         headers: { Authorization: `token ${githubToken}` }
@@ -112,7 +66,7 @@ const html = `<!DOCTYPE html>
 
     context.res = {
       status: 200,
-      body: `Blog post and index.html updated: ${filename}`
+      body: `Blog Markdown saved as: ${filename}`
     };
 
   } catch (err) {
