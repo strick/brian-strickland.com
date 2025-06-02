@@ -81,11 +81,11 @@ module.exports = async function (context, req) {
     );
 
     const indexHtmlDecoded = Buffer.from(indexRes.data.content, 'base64').toString('utf-8');
-    const newEntry = `    <li><a href="${postUrl}">${title}</a></li>\n`;
+    const newEntry = `    <li><a href="${postUrl}">${title}</a></li>\n    <!-- New blog posts will be listed here -->`;
 
     const updatedIndexHtml = indexHtmlDecoded.replace(
-      /(<ul>\s*)([\s\S]*?)(\s*<\/ul>)/,
-      (match, start, items, end) => `${start}${newEntry}${items}${end}`
+      `<!-- New blog posts will be listed here -->`,
+      newEntry
     );
 
     await axios.put(
