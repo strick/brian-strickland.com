@@ -13,8 +13,6 @@ module.exports = async function (context, req) {
     }
 
     const { title, content, slug, date } = req.body || {};
-    context.log("Received payload:", { title, slug, date });
-
     if (!title || !content) {
       context.res = { status: 400, body: "Missing title or content" };
       return;
@@ -23,6 +21,7 @@ module.exports = async function (context, req) {
     const today = date || new Date().toISOString().split("T")[0];
     const safeSlug = slug || title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]/g, "");
     const filename = `blog/${today}-${safeSlug}.html`;
+    const postUrl = `/blog/${today}-${safeSlug}.html`;
 
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -41,53 +40,72 @@ module.exports = async function (context, req) {
   <h1>${title}</h1>
   <p><strong>Date:</strong> ${today}</p>
   ${content}
+  <p><a href="/index.html">← Back to blog</a></p>
 </body>
 </html>`;
 
     const githubToken = process.env.AI_BLOG_GITHUB_TOKEN;
-    if (!githubToken) {
-      context.log("Missing GitHub token!");
-      context.res = { status: 500, body: "GitHub token is not set." };
-      return;
-    }
-
     const repo = "strick/brian-strickland.com";
     const branch = "main";
 
-    context.log("Checking if file already exists:", filename);
-
-    const getSHAResponse = await axios.get(
+    // Create or update blog post file
+    const postSHARes = await axios.get(
       `https://api.github.com/repos/${repo}/contents/${filename}`,
       {
         headers: { Authorization: `token ${githubToken}` },
         validateStatus: (status) => status < 500,
       }
     );
+    const postExists = postSHARes.status === 200;
+    const postSHA = postExists ? postSHARes.data.sha : undefined;
 
-    const isUpdating = getSHAResponse.status === 200;
-    const sha = isUpdating ? getSHAResponse.data.sha : undefined;
-
-    context.log(`Committing file (${isUpdating ? "updating" : "creating"}):`, filename);
-
-    const commitResponse = await axios.put(
+    await axios.put(
       `https://api.github.com/repos/${repo}/contents/${filename}`,
       {
-        message: isUpdating ? `Update ${filename}` : `Add ${filename}`,
+        message: postExists ? `Update ${filename}` : `Add ${filename}`,
         content: Buffer.from(html).toString("base64"),
         branch,
-        ...(sha && { sha })
+        ...(postSHA && { sha: postSHA })
       },
       {
         headers: { Authorization: `token ${githubToken}` }
       }
     );
 
-    context.log("Commit response:", commitResponse.data.content.path);
+    // Update index.html
+    const indexRes = await axios.get(
+      `https://api.github.com/repos/${repo}/contents/index.html`,
+      {
+        headers: { Authorization: `token ${githubToken}` }
+      }
+    );
+
+    const indexHtmlDecoded = Buffer.from(indexRes.data.content, 'base64').toString('utf-8');
+    const newEntry = `    <li><a href="${postUrl}">${title}</a></li>\n`;
+
+    const updatedIndexHtml = indexHtmlDecoded.replace(
+      /(<ul>\s*)([\s\S]*?)(\s*<\/ul>)/,
+      (match, start, items, end) => `${start}${newEntry}${items}${end}`
+    );
+
+    await axios.put(
+      `https://api.github.com/repos/${repo}/contents/index.html`,
+      {
+        message: `Add blog entry to index.html: ${title}`,
+        content: Buffer.from(updatedIndexHtml).toString("base64"),
+        branch,
+        sha: indexRes.data.sha
+      },
+      {
+        headers: { Authorization: `token ${githubToken}` }
+      }
+    );
 
     context.res = {
       status: 200,
-      body: `Blog post committed as ${filename}`
+      body: `Blog post and index.html updated: ${filename}`
     };
+
   } catch (err) {
     context.log("ERROR:", err.response?.data || err.message || err);
     context.res = {
