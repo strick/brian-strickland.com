@@ -1,6 +1,6 @@
 ---
 title: "Setting Up Pi-hole with DHCP and Static IP on a Debian Mac Mini"
-date: "2025-10-25T17:31:00"
+date: "2025-05-30T21:31:00"
 slug: "pihole-dhcp-static-ip-debian-mac-mini"
 ---
 
