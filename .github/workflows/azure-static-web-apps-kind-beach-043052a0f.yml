@@ -1,5 +1,9 @@
 name: Azure Static Web Apps CI/CD
 
+concurrency:
+  group: deploy-blog
+  cancel-in-progress: false  
+
 on:
   push:
     branches:
