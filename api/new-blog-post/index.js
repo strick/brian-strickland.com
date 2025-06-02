@@ -20,7 +20,10 @@ module.exports = async function (context, req) {
 
     const now = new Date();
     const today = date || now.toISOString().split("T")[0];
-    const time = `${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}`;
+   
+    const estTime = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+    const time = `${String(estTime.getHours()).padStart(2, '0')}${String(estTime.getMinutes()).padStart(2, '0')}`;
+
 
     const safeSlug = slug || title.toLowerCase().replace(/\s+/g, "-").replace(/[^\w\-]/g, "");
     const filename = `blog/${today}-${time}-${safeSlug}.html`;
@@ -38,7 +41,7 @@ const html = `<!DOCTYPE html>
 <body>
   <header>
     <h1>${title}</h1>
-    <p class="date">${today}</p>
+    <p class="date">${today} - ${time}</p>
   </header>
   <main>
     ${content}
