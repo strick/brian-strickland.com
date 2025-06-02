@@ -85,7 +85,7 @@ module.exports = async function (context, req) {
     );
 
     const indexHtmlDecoded = Buffer.from(indexRes.data.content, 'base64').toString('utf-8');
-    const newEntry = `    <li><a href="${postUrl}">${title}</a></li>\n    <!-- New blog posts will be listed here -->`;
+    const newEntry = `<!-- New blog posts will be listed here --><li><a href="${postUrl}">${title}</a></li>\n    `;
 
     const updatedIndexHtml = indexHtmlDecoded.replace(
       `<!-- New blog posts will be listed here -->`,
