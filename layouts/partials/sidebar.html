@@ -1,0 +1,8 @@
+<aside class="sidebar">
+    <h2>Latest Posts</h2>
+    <ul>
+    {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+    </ul>
+</aside>
