@@ -16,3 +16,5 @@ Thumbs.db
 
 # Node / npm (if you ever install themes with npm)
 node_modules/
+
+.env
