@@ -32,7 +32,7 @@ module.exports = async function (context, req) {
         context.log.error("ERROR:", err);
         context.res = {
             status: 500,
-            body: `Function error: ${err.message}`
+        body: `Function error: ${err.message || err.toString()}`
         };
     }
 };
