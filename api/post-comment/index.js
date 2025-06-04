@@ -3,6 +3,15 @@ const sql = require("mssql");
 module.exports = async function (context, req) {
   context.log("Function triggered: post-comment");
 
+    const API_KEY = process.env.BLOG_API_KEY;
+    const incomingKey = req.headers["x-api-key"];
+
+    if (!incomingKey || incomingKey !== API_KEY) {
+      context.res = { status: 403, body: "Forbidden: Invalid API Key" };
+      return;
+    }
+
+
   try {
     // Validate and parse body
     const { name, comment, post_slug } = req.body || {};
