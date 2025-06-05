@@ -1,11 +1,20 @@
 const sql = require("mssql");
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
 
 module.exports = async function (context, req) {
   context.log("Function triggered: post-comment");
 
   try {
     // Validate and parse body
-    const { name, comment, post_slug } = req.body || {};
+    //const { name, comment, post_slug } = req.body || {};
+
+    const name = DOMPurify.sanitize(req.body?.name?.toString().trim() || '');
+    const comment = DOMPurify.sanitize(req.body?.comment?.toString().trim() || '');
+    const post_slug = req.body?.post_slug?.toString().trim() || '';
 
     // Honeypot check
     if (website) {
