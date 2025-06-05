@@ -1,69 +1,75 @@
 const sql = require("mssql");
-const createDOMPurify = require('dompurify');
-const { JSDOM } = require('jsdom');
-const window = new JSDOM('').window;
+const createDOMPurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+const window = new JSDOM("").window;
 const DOMPurify = createDOMPurify(window);
-
-const rateLimitMap = new Map();
-const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
-const MAX_REQUESTS_PER_WINDOW = 5;
-
 
 module.exports = async function (context, req) {
   context.log("Function triggered: post-comment");
 
-
-    const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-
-    const now = Date.now();
-    const requests = rateLimitMap.get(ip) || [];
-    const recentRequests = requests.filter(ts => now - ts < RATE_LIMIT_WINDOW_MS);
-
-    if (recentRequests.length >= MAX_REQUESTS_PER_WINDOW) {
-    context.res = {
-        status: 429,
-        body: "Rate limit exceeded. Please wait a moment before trying again."
-    };
-    return;
-    }
-
-    // Add current request timestamp
-    recentRequests.push(now);
-    rateLimitMap.set(ip, recentRequests);
-
-
-
   try {
-    // Validate and parse body
-    //const { name, comment, post_slug } = req.body || {};
-
+    // Extract and sanitize fields
     const name = DOMPurify.sanitize(req.body?.name?.toString().trim() || '');
     const comment = DOMPurify.sanitize(req.body?.comment?.toString().trim() || '');
     const post_slug = req.body?.post_slug?.toString().trim() || '';
     const website = req.body?.website?.toString().trim() || '';
 
-    // Honeypot check
+    // Honeypot bot trap
     if (website) {
-        context.res = {
-            status: 403,
-            body: "Bot detected (honeypot field filled in)"
-        };
-        return;
-    }
-
-    context.log("Received body:", { name, comment, post_slug });
-
-    if (!name || !comment || !post_slug) {
-      context.res = { status: 400, body: "Missing name, comment, or post_slug" };
+      context.log("Honeypot triggered.");
+      context.res = {
+        status: 403,
+        body: "Bot detected (honeypot field filled in)"
+      };
       return;
     }
 
-    // Connect to Azure SQL
+    if (!name || !comment || !post_slug) {
+      context.res = {
+        status: 400,
+        body: "Missing name, comment, or post_slug"
+      };
+      return;
+    }
+
+    // Connect to SQL
     context.log("Connecting to database...");
     const pool = await sql.connect(process.env.SQL_CONN_STRING);
     context.log("Database connection successful");
 
-    // Insert the comment
+    // Rate limiting by IP
+    const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    const now = new Date();
+    const windowStart = new Date(now.getTime() - 60 * 1000); // 1 minute window
+
+    const rateResult = await pool.request()
+      .input("ip", sql.NVarChar, ip)
+      .input("since", sql.DateTime2, windowStart)
+      .query(`
+        SELECT COUNT(*) AS count
+        FROM CommentLog
+        WHERE ip_address = @ip AND timestamp >= @since
+      `);
+
+    if (rateResult.recordset[0].count >= 5) {
+      context.log(`Rate limit exceeded for IP: ${ip}`);
+      context.res = {
+        status: 429,
+        body: "Rate limit exceeded. Please wait a moment before trying again."
+      };
+      return;
+    }
+
+    // Log comment attempt
+    await pool.request()
+      .input("ip", sql.NVarChar, ip)
+      .input("timestamp", sql.DateTime2, now)
+      .query(`
+        INSERT INTO CommentLog (ip_address, timestamp)
+        VALUES (@ip, @timestamp)
+      `);
+
+    // Insert actual comment
     await pool.request()
       .input("name", sql.NVarChar, name)
       .input("comment", sql.NVarChar, comment)
@@ -73,7 +79,7 @@ module.exports = async function (context, req) {
         VALUES (@name, @comment, @post_slug)
       `);
 
-    context.log("Comment inserted successfully");
+    context.log("Comment inserted successfully.");
 
     context.res = {
       status: 200,
