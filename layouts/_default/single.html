@@ -12,12 +12,19 @@
   <div id="commentsContainer">Loading comments...</div>
 
   <h3>Leave a Comment</h3>
-  <form id="commentForm">
-    <input name="name" placeholder="Your name" required><br>
-    <textarea name="comment" placeholder="Your comment" required></textarea><br>
-    <input type="hidden" name="post_slug" value="{{ .File.BaseFileName }}">
-    <button type="submit">Submit</button>
-  </form>
+<form id="comment-form">
+  <input type="text" name="name" required>
+  <textarea name="comment" required></textarea>
+  <input type="hidden" name="post_slug" value="{{ .Slug }}">
+  
+  <div style="display:none;">
+    <label>Leave this field empty</label>
+    <input type="text" name="website">
+  </div>
+
+  <button type="submit">Post Comment</button>
+</form>
+
   <div id="commentStatus"></div>
 </section>
 
@@ -45,7 +52,7 @@
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // "x-api-key": "YOUR_KEY" // uncomment if you're requiring this
+        "x-api-key": "YOUR_KEY" // uncomment if you're requiring this
       },
       body: JSON.stringify(data)
     });
