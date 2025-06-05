@@ -15,6 +15,7 @@ module.exports = async function (context, req) {
     const name = DOMPurify.sanitize(req.body?.name?.toString().trim() || '');
     const comment = DOMPurify.sanitize(req.body?.comment?.toString().trim() || '');
     const post_slug = req.body?.post_slug?.toString().trim() || '';
+    const website = req.body?.post_slug?.toString().trim() || '';
 
     // Honeypot check
     if (website) {
