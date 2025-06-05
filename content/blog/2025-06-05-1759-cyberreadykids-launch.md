@@ -1,6 +1,6 @@
 ---
 title: "Launching CyberReady Kids: A Hands-On Cyber Safety Project for Families"
-date: "2025-06-02T17:59:00"
+date: "2025-06-05T17:59:00"
 slug: "cyberreadykids-launch"
 ---
 
