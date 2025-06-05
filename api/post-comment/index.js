@@ -11,8 +11,8 @@ module.exports = async function (context, req) {
     // Extract and sanitize fields
     const name = DOMPurify.sanitize(req.body?.name?.toString().trim() || '');
     const comment = DOMPurify.sanitize(req.body?.comment?.toString().trim() || '');
-    const post_slug = DOMPurify.sanitize(rreq.body?.post_slug?.toString().trim() || '');
-    const website = DOMPurify.sanitize(rreq.body?.website?.toString().trim() || '');
+    const post_slug = DOMPurify.sanitize(req.body?.post_slug?.toString().trim() || '');
+    const website = DOMPurify.sanitize(req.body?.website?.toString().trim() || '');
 
     // Honeypot bot trap
     if (website) {

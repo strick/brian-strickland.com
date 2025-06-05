@@ -40,7 +40,7 @@
 </section>
 
 <script>
-  const slug = "{{ .File.BaseFileName }}";
+  const slug = "{{ .Slug }}";
 
 function escapeHTML(str) {
   return str.replace(/[&<>"']/g, tag => (
