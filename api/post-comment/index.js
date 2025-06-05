@@ -38,7 +38,11 @@ module.exports = async function (context, req) {
     context.log("Database connection successful");
 
     // Rate limiting by IP
-    const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    const ip = (req.headers["x-forwarded-for"] || req.socket.remoteAddress || '')
+             .split(',')[0]
+             .split(':')[0]
+             .trim();
+
     const now = new Date();
     const windowStart = new Date(now.getTime() - 60 * 1000); // 1 minute window
 
