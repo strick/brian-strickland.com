@@ -1,0 +1,23 @@
+---
+title: "Launching CyberReady Kids: A Hands-On Cyber Safety Project for Families"
+date: "2025-06-02T17:59:00"
+slug: "cyberreadykids-launch"
+---
+
+<p>Today, I launched <a href="https://www.cyberreadykids.com" target="_blank">CyberReady Kids</a>, a project I’ve been thinking about for a while.</p>
+
+<p>It’s designed to help parents teach their kids digital safety through hands-on missions, home network projects, and fun cybersecurity challenges — all created by a cybersecurity dad (me) for real families.</p>
+
+<p>Highlights from today’s launch:</p>
+<ul>
+  <li>Registered <strong>cyberreadykids.com</strong> and validated DNS through Azure</li>
+  <li>Published a custom landing page with subscriber sign-up via Buttondown</li>
+  <li>Set up domain forwarding and SSL for clean, secure access</li>
+  <li>Built foundational branding and newsletter structure</li>
+</ul>
+
+<p>Next up: delivering our first free guide — <strong>“3 Things You Can Do Tonight to Protect Your Kids Online”</strong> — to new subscribers.</p>
+
+<p>Check it out, share it with a parent who needs it, or follow along as I grow this into a sustainable educational platform for digital hygiene at home.</p>
+
+<p><a href="https://www.cyberreadykids.com" target="_blank">➡️ Visit CyberReady Kids</a></p>
