@@ -4,9 +4,34 @@ const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);
 
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 5;
+
 
 module.exports = async function (context, req) {
   context.log("Function triggered: post-comment");
+
+
+    const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+
+    const now = Date.now();
+    const requests = rateLimitMap.get(ip) || [];
+    const recentRequests = requests.filter(ts => now - ts < RATE_LIMIT_WINDOW_MS);
+
+    if (recentRequests.length >= MAX_REQUESTS_PER_WINDOW) {
+    context.res = {
+        status: 429,
+        body: "Rate limit exceeded. Please wait a moment before trying again."
+    };
+    return;
+    }
+
+    // Add current request timestamp
+    recentRequests.push(now);
+    rateLimitMap.set(ip, recentRequests);
+
+
 
   try {
     // Validate and parse body
@@ -15,7 +40,7 @@ module.exports = async function (context, req) {
     const name = DOMPurify.sanitize(req.body?.name?.toString().trim() || '');
     const comment = DOMPurify.sanitize(req.body?.comment?.toString().trim() || '');
     const post_slug = req.body?.post_slug?.toString().trim() || '';
-    const website = req.body?.post_slug?.toString().trim() || '';
+    const website = req.body?.website?.toString().trim() || '';
 
     // Honeypot check
     if (website) {
