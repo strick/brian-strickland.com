@@ -12,18 +12,19 @@
   <div id="commentsContainer">Loading comments...</div>
 
   <h3>Leave a Comment</h3>
-<form id="comment-form">
-  <input type="text" name="name" required>
-  <textarea name="comment" required></textarea>
-  <input type="hidden" name="post_slug" value="{{ .Slug }}">
-  
-  <div style="display:none;">
-    <label>Leave this field empty</label>
-    <input type="text" name="website">
-  </div>
+  <form id="comment-form">
+    <input type="text" name="name" required>
+    <textarea name="comment" required></textarea>
+    <input type="hidden" name="post_slug" value="{{ .Slug }}">
 
-  <button type="submit">Post Comment</button>
-</form>
+    <!-- Honeypot field -->
+    <div style="display:none;">
+      <label>Leave this field empty</label>
+      <input type="text" name="website">
+    </div>
+
+    <button type="submit">Post Comment</button>
+  </form>
 
   <div id="commentStatus"></div>
 </section>
@@ -43,7 +44,7 @@
       `).join("<hr>");
   }
 
-  document.getElementById("commentForm").addEventListener("submit", async (e) => {
+  document.getElementById("comment-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const form = e.target;
     const data = Object.fromEntries(new FormData(form).entries());
@@ -51,8 +52,8 @@
     const res = await fetch("/api/post-comment", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "YOUR_KEY" // uncomment if you're requiring this
+        "Content-Type": "application/json"
+        // "x-api-key": "YOUR_KEY" // Uncomment if API key is required
       },
       body: JSON.stringify(data)
     });
@@ -60,7 +61,7 @@
     const result = await res.text();
     document.getElementById("commentStatus").textContent = result;
     form.reset();
-    loadComments(); // refresh comments after post
+    loadComments(); // refresh comments after posting
   });
 
   loadComments();

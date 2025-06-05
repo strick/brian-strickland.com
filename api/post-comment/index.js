@@ -6,6 +6,16 @@ module.exports = async function (context, req) {
   try {
     // Validate and parse body
     const { name, comment, post_slug } = req.body || {};
+
+    // Honeypot check
+    if (website) {
+        context.res = {
+            status: 403,
+            body: "Bot detected (honeypot field filled in)"
+        };
+        return;
+    }
+
     context.log("Received body:", { name, comment, post_slug });
 
     if (!name || !comment || !post_slug) {
