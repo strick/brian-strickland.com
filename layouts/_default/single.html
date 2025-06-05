@@ -35,7 +35,7 @@
   <button type="submit" class="btn btn-primary">Post Comment</button>
 </form>
 
-<div id="commentStatus" class="text-muted small"></div>
+<div id="commentStatus" class="text-muted small mt-2"></div>
 
 </section>
 
@@ -68,25 +68,38 @@ async function loadComments() {
   `).join('');
 }
 
-  document.getElementById("comment-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const data = Object.fromEntries(new FormData(form).entries());
+document.getElementById("comment-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form).entries());
+  const statusBox = document.getElementById("commentStatus");
 
+  try {
     const res = await fetch("/api/post-comment", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "YOUR_KEY"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     });
 
-    const result = await res.text();
-    document.getElementById("commentStatus").textContent = result;
-    form.reset();
-    loadComments();
-  });
+    if (res.ok) {
+      statusBox.textContent = "Comment posted!";
+      statusBox.className = "text-success small mt-2";
+      form.reset();
+      await loadComments(); // refresh comments after posting
+    } else {
+      const errText = await res.text();
+      statusBox.textContent = `${errText || "Something went wrong"}`;
+      statusBox.className = "text-danger small mt-2";
+    }
+
+  } catch (err) {
+    statusBox.textContent = `Error: ${err.message}`;
+    statusBox.className = "text-danger small mt-2";
+  }
+});
+
 
   loadComments();
 </script>
