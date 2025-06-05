@@ -73,6 +73,12 @@ document.getElementById("comment-form").addEventListener("submit", async (e) => 
   const form = e.target;
   const data = Object.fromEntries(new FormData(form).entries());
   const statusBox = document.getElementById("commentStatus");
+  const submitButton = form.querySelector("button");
+
+  // Show loading feedback
+  statusBox.textContent = "Posting your comment...";
+  statusBox.className = "text-muted small mt-2";
+  submitButton.disabled = true;
 
   try {
     const res = await fetch("/api/post-comment", {
@@ -87,7 +93,7 @@ document.getElementById("comment-form").addEventListener("submit", async (e) => 
       statusBox.textContent = "Comment posted!";
       statusBox.className = "text-success small mt-2";
       form.reset();
-      await loadComments(); // refresh comments after posting
+      await loadComments();
     } else {
       const errText = await res.text();
       statusBox.textContent = `${errText || "Something went wrong"}`;
@@ -97,6 +103,9 @@ document.getElementById("comment-form").addEventListener("submit", async (e) => 
   } catch (err) {
     statusBox.textContent = `Error: ${err.message}`;
     statusBox.className = "text-danger small mt-2";
+  } finally {
+    submitButton.disabled = false;
+    statusBox.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 });
 
