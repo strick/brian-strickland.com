@@ -2,7 +2,7 @@
     <h2>Latest Posts</h2>
     <ul>
     {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
-        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> — <em>{{ .Date.Format "Jan 2, 2006" }}</em></li>
     {{ end }}
     </ul>
 </aside>
