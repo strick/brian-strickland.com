@@ -1,36 +1,38 @@
 ---
-title: "Secure Blog Comment System with Rate Limiting and XSS Protection"
+title: "Comment System with Azure SQL, XSS Protection, Honeypot, and Rate Limits"
 date: "2025-06-04T22:06:00"
 slug: "blog-comments-xss-security"
 ---
 
-<h3>Commenting Done Right: Secure, Functional, and User-Friendly</h3>
+<p>This two-night project involved building a fully working blog comment system backed by Azure SQL. The goal was to allow readers to leave comments while enforcing solid security and a clean UX. Here's how it all came together.</p>
 
-<p>This two-night project was all about building and securing a fully functional blog comment system from scratch, using Azure Functions, SQL, and frontend JavaScript. The goal: allow users to submit comments to each blog post while keeping the system fast, safe, and spam-resistant.</p>
+<h2>Setting up Azure SQL</h2>
+<p>I chose <strong>Azure SQL Database</strong> for hosting comments — Microsoft’s free tier is perfect for small applications like this. I spun up a new logical SQL server with a basic database, configured a firewall rule to allow Azure services, and set up a secure connection string stored as <code>SQL_CONN_STRING</code> in my Azure Function App settings.</p>
 
-<h4>🔧 Backend: API + Database</h4>
-<p>I created two Azure Function endpoints:</p>
+<h2>Creating APIs with Azure Functions</h2>
+<p>Two endpoints were built:</p>
 <ul>
-  <li><code>/api/get-comments</code>: Fetches comments for a given post_slug</li>
-  <li><code>/api/post-comment</code>: Accepts and stores new comments securely</li>
+  <li><code>post-comment</code>: Accepts a comment and writes it to the database.</li>
+  <li><code>get-comments</code>: Retrieves and returns comments per post.</li>
+</ul>
+<p>Each uses the <code>mssql</code> package to interact with the Azure SQL instance.</p>
+
+<h2>Debugging an npm Issue</h2>
+<p>One roadblock was that my outer <code>package.json</code> had <code>mssql</code> listed, but it wasn’t available in the <code>/api</code> subfolder where the Azure Function lives. I installed <code>mssql</code> directly inside <code>/api</code>, which fixed the issue. A good reminder that local structure matters in serverless apps.</p>
+
+<h2>Adding Security</h2>
+<p>I hardened the API in several ways:</p>
+<ul>
+  <li><strong>XSS Protection:</strong> Used <code>DOMPurify</code> to sanitize both <code>name</code> and <code>comment</code> server-side.</li>
+  <li><strong>Honeypot:</strong> Added a hidden <code>website</code> field in the form. Bots filling this field get blocked immediately.</li>
+  <li><strong>Rate Limiting:</strong> Implemented a server-side SQL-based limit of 5 requests per IP per minute using a <code>CommentRateLimit</code> table.</li>
+  <li><strong>API Key:</strong> Added support for <code>x-api-key</code> headers for any write operations. Keys aren’t exposed in client JavaScript.</li>
 </ul>
 
-<p>Each comment is stored in a SQL database table <code>Comments</code> with fields: <code>name</code>, <code>comment</code>, <code>post_slug</code>, and <code>timestamp</code>. I ran into an early snag when <code>mssql</code> was missing — turns out I had my <code>package.json</code> in the root directory, not in the <code>/api</code> folder where Azure Functions runs. Reinstalled in the right place and everything clicked.</p>
+<h2>UX Improvements</h2>
+<p>On the frontend, I added Bootstrap styling to make the comments more readable and visually distinct. Submitting a comment now displays a real-time success or error message, clears the form, and refreshes the comment list without reloading the page.</p>
 
-<h4>🛡️ Security Enhancements</h4>
-<ul>
-  <li><strong>XSS protection</strong>: Used <code>DOMPurify</code> on the server and escaped HTML client-side to sanitize inputs before rendering.</li>
-  <li><strong>Honeypot field</strong>: Included a hidden <code>website</code> field in the form to catch bots. If filled, the request is blocked.</li>
-  <li><strong>API Key</strong>: Protected the <code>post-comment</code> endpoint with an <code>x-api-key</code> header.</li>
-  <li><strong>Rate limiting</strong>: Implemented basic per-IP rate limiting in the API using a SQL table to prevent comment spam.</li>
-</ul>
+<h2>Final Thoughts</h2>
+<p>This comment system is fast, secure, and extensible. It runs on serverless architecture with minimal cost (Azure SQL free tier + Azure Functions), and it’s protected against spam, XSS, and simple bot attacks. All data is stored relationally, making it easy to expand later with moderation features or comment threading.</p>
 
-<h4>💡 UX Improvements</h4>
-<ul>
-  <li><strong>Live feedback</strong>: Added a loading message while posting comments, disabled the submit button during requests, and scrolled to the response status.</li>
-  <li><strong>Visual polish</strong>: Used Bootstrap to cleanly display comments inside styled cards with timestamp, author name, and formatted text.</li>
-  <li><strong>Auto-refresh</strong>: After posting a comment, the comments reload automatically so users see their message without refreshing the page.</li>
-</ul>
-
-<h4>🧠 Final Thoughts</h4>
-<p>This wasn’t just a feature drop — it was a full walkthrough of what secure and maintainable frontend/backend integration looks like. From XSS hardening and bot traps to rate limits and real-time UI updates, the system is now fast, functional, and ready for real users — while also giving me complete control and flexibility via my static Hugo blog with API-backed dynamic features.</p>
+<p>Another solid upgrade to the blog, fully automated and deployed via my Hugo + GitHub workflow.</p>
