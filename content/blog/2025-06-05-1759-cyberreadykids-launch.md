@@ -13,10 +13,15 @@ slug: "cyberreadykids-launch"
   <li>Registered <strong>cyberreadykids.com</strong> and validated DNS through Azure</li>
   <li>Published a custom landing page with subscriber sign-up via Buttondown</li>
   <li>Set up domain forwarding and SSL for clean, secure access</li>
-  <li>Built foundational branding and newsletter structure</li>
+  <li>Wrote and published a <a href="https://www.cyberreadykids.com/privacy.html" target="_blank">privacy & media policy</a> aligned with best practices for families and creators</li>
+  <li>Disabled all email tracking and enabled two-factor authentication to protect subscriber privacy</li>
+  <li>Added a “Privacy Tip” to the signup form encouraging alias or relay emails</li>
+  <li>Standardized visual layout and branding with clean CSS for both pages</li>
 </ul>
 
-<p>Next up: delivering our first free guide — <strong>“3 Things You Can Do Tonight to Protect Your Kids Online”</strong> — to new subscribers.</p>
+<p>The entire project is being built with a privacy-first mindset — no trackers, no data selling, no nonsense. Just real content from one parent to another.</p>
+
+<p>Next up: delivering our first free guide — <strong>“3 Things You Can Do Tonight to Protect Your Kids Online”</strong> — to new subscribers, along with behind-the-scenes testing videos and experiments (yes, with my own kids first).</p>
 
 <p>Check it out, share it with a parent who needs it, or follow along as I grow this into a sustainable educational platform for digital hygiene at home.</p>
 
