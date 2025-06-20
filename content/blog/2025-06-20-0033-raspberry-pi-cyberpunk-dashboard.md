@@ -1,13 +1,10 @@
 ---
 title: "Built a Live Cyberpunk Kiosk Dashboard with Raspberry Pi"
-date: 2025-06-20T00:33:18
+date: 2025-06-20T13:08:31
 slug: "raspberry-pi-cyberpunk-dashboard"
 ---
 
 Last night I turned an idle monitor and a Raspberry Pi into a **fully animated cyberpunk kiosk dashboard** — and honestly, it looks like something straight out of a sci-fi command center.
-
-![Kiosk Display](/images/kiosk-cyberpunk-setup-1.jpg)
-![Full Setup](/images/kiosk-cyberpunk-setup-2.jpg)
 
 ## 🧰 Setup Highlights
 
@@ -16,6 +13,19 @@ Last night I turned an idle monitor and a Raspberry Pi into a **fully animated c
 - 🌐 **Browser:** Chromium in Kiosk mode  
 - ⚙️ **Startup:** Autostarts on boot using LXDE autostart  
 - 🗂 **Page:** Local `dashboard.html` file — no internet required beyond APIs  
+
+---
+
+<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+  <a href="/images/kiosk-cyberpunk-setup-1.jpg" target="_blank">
+    <img src="/images/kiosk-cyberpunk-setup-1.jpg" alt="Cyberpunk Pi Display" style="max-width: 300px; border: 1px solid #333; border-radius: 8px;">
+  </a>
+  <a href="/images/kiosk-cyberpunk-setup-2.jpg" target="_blank">
+    <img src="/images/kiosk-cyberpunk-setup-2.jpg" alt="Full Lab Setup" style="max-width: 300px; border: 1px solid #333; border-radius: 8px;">
+  </a>
+</div>
+
+--- 
 
 ## 🧠 Dashboard Features
 
