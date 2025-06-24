@@ -18,3 +18,5 @@ Thumbs.db
 node_modules/
 
 .env
+
+content/_posts_json/
