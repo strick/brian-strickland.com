@@ -6,7 +6,7 @@ slug: "hugo-sidebar-tag-cloud"
 
 <p>I recently added a tag system to my Hugo blog and wanted to keep things clean without cluttering the post list. Rather than listing tags inline under each post, I created a tag cloud in the sidebar. This made the blog more scannable, helped surface recurring themes, and aligned with a minimalist layout.</p>
 
-<p>Here�s what I implemented:</p>
+<p>Here's what I implemented:</p>
 
 <ol>
   <li><strong>Front Matter Tags</strong>: Each post now has a <code>tags:</code> array in the YAML front matter, like:</li>
@@ -33,8 +33,8 @@ slug: "hugo-sidebar-tag-cloud"
 </code></pre>
 
 <h3>Result</h3>
-<p>Clean main content. Navigable tags. Useful structure that doesn�t overwhelm the page.</p>
+<p>Clean main content. Navigable tags. Useful structure that doesn't overwhelm the page.</p>
 
-<p>This is a great pattern if you�re using Hugo for a personal blog or project site and want lightweight taxonomy without a plugin system.</p>
+<p>This is a great pattern if you're using Hugo for a personal blog or project site and want lightweight taxonomy without a plugin system.</p>
 
-<p>Let me know if you�d like to see the exact source snippets I used!</p>
+<p>Let me know if you'd like to see the exact source snippets I used!</p>
