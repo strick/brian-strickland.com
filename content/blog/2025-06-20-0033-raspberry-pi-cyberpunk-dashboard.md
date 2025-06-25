@@ -17,14 +17,47 @@ Last night I turned an idle monitor and a Raspberry Pi into a **fully animated c
 
 ---
 
-<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+<style>
+  .image-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .image-gallery a {
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-gallery img {
+    max-width: 100%;
+    width: 300px;
+    border: 1px solid #333;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .image-gallery {
+      flex-direction: column;
+    }
+    .image-gallery a {
+      display: flex;
+      justify-content: left;
+    } 
+  }
+</style>
+
+<div class="image-gallery">
   <a href="/images/kiosk-cyberpunk-setup-1.jpg" target="_blank">
-    <img src="/images/kiosk-cyberpunk-setup-1.jpg" alt="Cyberpunk Pi Display" style="max-width: 300px; border: 1px solid #333; border-radius: 8px;">
+    <img src="/images/kiosk-cyberpunk-setup-1.jpg" alt="Cyberpunk Pi Display">
   </a>
   <a href="/images/kiosk-cyberpunk-setup-2.jpg" target="_blank">
-    <img src="/images/kiosk-cyberpunk-setup-2.jpg" alt="Full Lab Setup" style="max-width: 300px; border: 1px solid #333; border-radius: 8px;">
+    <img src="/images/kiosk-cyberpunk-setup-2.jpg" alt="Full Lab Setup">
   </a>
 </div>
+
 
 --- 
 

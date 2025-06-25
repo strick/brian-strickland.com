@@ -177,3 +177,44 @@ footer {
 
 
 /* Social Media Icons */
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .content,
+  .sidebar {
+    flex: 1 1 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .post {
+    padding: 1rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .image-gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    margin: 0.5rem 0;
+  }
+
+
+}
+
