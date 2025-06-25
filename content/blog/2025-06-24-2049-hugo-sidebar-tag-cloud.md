@@ -1,7 +1,7 @@
 ---
 title: "Adding a Clean Tag System to My Hugo Blog with a Sidebar Tag Cloud"
 date: "2025-06-24T20:49:00"
-slug: "hugo-sidebar-tag-cloud"
+slug: [hugo, sidebar, tag, cloud]
 ---
 
 <p>I recently added a tag system to my Hugo blog and wanted to keep things clean without cluttering the post list. Rather than listing tags inline under each post, I created a tag cloud in the sidebar. This made the blog more scannable, helped surface recurring themes, and aligned with a minimalist layout.</p>
