@@ -2,6 +2,7 @@
 title: "Launching CyberReady Kids: A Hands-On Cyber Safety Project for Families"
 date: "2025-06-05T17:59:00"
 slug: "cyberreadykids-launch"
+tags: [cybersecurity, family-tech, education, kids]
 ---
 
 <p>Today, I launched <a href="https://www.cyberreadykids.com" target="_blank">CyberReady Kids</a>, a project I’ve been thinking about for a while.</p>

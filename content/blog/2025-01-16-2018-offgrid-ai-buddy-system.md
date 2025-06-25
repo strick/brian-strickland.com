@@ -2,6 +2,7 @@
 title: "Built an Off-Grid AI Buddy System with Solar Power and Local Intelligence"
 date: "2025-01-16T20:18:00"
 slug: "offgrid-ai-buddy-system"
+tags: [ai, solar, off-grid, survival-tech, raspberry-pi]
 ---
 
 <p>This was the beginning of my <strong>AI Buddy Survival System</strong> — a fully off-grid, solar-powered AI assistant designed to operate during power outages or off-the-grid situations while remaining completely self-reliant.</p>

@@ -2,6 +2,7 @@
 title: "Setting Up Pi-hole with DHCP and Static IP on a Debian Mac Mini"
 date: "2025-05-30T21:31:00"
 slug: "pihole-dhcp-static-ip-debian-mac-mini"
+tags: [pi-hole, debian, networking, dhcp]
 ---
 
 ## Setting Up Pi-hole with DHCP and Static IP on a Debian Mac Mini

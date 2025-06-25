@@ -2,6 +2,7 @@
 title: "Segmented Home Network Lab Setup with VLANs"
 date: "2025-02-22T20:12:00"
 slug: "segmented-home-network-lab"
+tags: [networking, vlans, lab-setup, home-lab]
 ---
 
 ### Segmented Home Network Lab Setup with VLANs

@@ -2,6 +2,7 @@
 title: "Reviving a 2011 MacBook Air with Linux Mint XFCE"
 date: "2025-06-03T21:29:00"
 slug: "revive-2011-macbook-linux-mint"
+tags: [linux, macbook, xfce, performance]
 ---
 
 <h2>Why I Did This</h2>

@@ -2,6 +2,7 @@
 title: "How I Rebuilt My Home Network with Pi-hole and Killed ISP DNS Leaks for Good"
 date: "2025-06-18T21:12:00"
 slug: "pi-hole-home-network-rebuild"
+tags: [networking, pi-hole, dns, home-lab]
 ---
 
 Like many home lab enthusiasts, I wanted more control over my network, not just to block ads, but to make sure every device in my house used a secure, filtered DNS resolver. That meant one thing: rebuilding my network around **Pi-hole**, disabling my ISP's DNS, and turning a cluttered setup into a clean, reliable, ad-free environment.

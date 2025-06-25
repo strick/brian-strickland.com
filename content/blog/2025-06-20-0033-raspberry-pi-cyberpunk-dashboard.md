@@ -2,6 +2,7 @@
 title: "Built a Live Cyberpunk Kiosk Dashboard with Raspberry Pi"
 date: 2025-06-20T13:08:31
 slug: "raspberry-pi-cyberpunk-dashboard"
+tags: [raspberry-pi, kiosk, dashboard, home-lab]
 ---
 
 Last night I turned an idle monitor and a Raspberry Pi into a **fully animated cyberpunk kiosk dashboard** — and honestly, it looks like something straight out of a sci-fi command center.

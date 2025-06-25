@@ -6,6 +6,19 @@
     {{ .Content }}
   </article>
 
+    {{ with .Params.tags }}
+  <div class="mt-4">
+    <strong>Tags:</strong>
+    <ul class="list-inline">
+      {{ range . }}
+        <li class="list-inline-item">
+          <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="badge bg-secondary text-decoration-none">{{ . }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
   <hr>
 
 <h2 class="mt-5">Comments</h2>

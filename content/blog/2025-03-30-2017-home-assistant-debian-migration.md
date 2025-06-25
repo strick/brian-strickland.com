@@ -2,6 +2,7 @@
 title: "Migrated and Hardened My Home Assistant Setup on Debian"
 date: "2025-03-30T20:17:00"
 slug: "home-assistant-debian-migration"
+tags: [home-assistant, debian, home-automation, security]
 ---
 
 <p>I started my Home Assistant journey by installing it directly on my <strong>Beelink SER5 Pro</strong>. This initial install was a supervised version, but I quickly realized I wanted a more modular and future-proof setup, so I created a full backup and reinstalled Home Assistant on a clean <strong>Debian OS</strong> running on the same Beelink box.</p>

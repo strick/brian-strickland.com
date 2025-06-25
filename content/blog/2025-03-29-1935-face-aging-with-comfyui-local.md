@@ -2,6 +2,7 @@
 title: "Realistic Face Aging with ComfyUI and Local AI"
 date: "2025-03-29T19:35:00"
 slug: "face-aging-with-comfyui-local"
+tags: [ai, comfyui, face-aging, local-models]
 ---
 
 ### Realistic Face Aging with ComfyUI and Local AI

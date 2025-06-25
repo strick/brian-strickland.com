@@ -1,0 +1,14 @@
+<div class="card mb-4">
+  <div class="card-header">
+    <strong>Tags</strong>
+  </div>
+  <div class="card-body">
+    <div class="d-flex flex-wrap gap-2">
+        {{ range sort site.Taxonomies.tags "Count" "desc" }}
+        <a href="{{ "/tags/" | relURL }}{{ .Page.Title | urlize }}" class="badge bg-secondary text-decoration-none">
+            {{ .Page.Title }} <small>({{ len .Pages }})</small>
+        </a>
+        {{ end }}
+    </div>
+  </div>
+</div>

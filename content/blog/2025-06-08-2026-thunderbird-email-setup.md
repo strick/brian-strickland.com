@@ -2,6 +2,7 @@
 title: "Streamlining Multi-Account Email with Thunderbird"
 date: "2025-06-08T20:26:00"
 slug: "thunderbird-email-setup"
+tags: [email, productivity, thunderbird]
 ---
 
 <p>I set up <strong>Thunderbird</strong> on both my Windows workstation and Linux Mint laptop to consolidate and streamline how I manage multiple Gmail accounts and project inboxes.</p>

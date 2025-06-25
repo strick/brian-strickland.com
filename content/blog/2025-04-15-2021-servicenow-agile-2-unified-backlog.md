@@ -2,6 +2,7 @@
 title: "Implementing Agile 2.0 and Unified Backlogs in ServiceNow for Team Efficiency"
 date: "2025-04-15T20:21:00"
 slug: "servicenow-agile-2-unified-backlog"
+tags: [servicenow, agile, backlog, workflow]
 ---
 
 <p>This year, I led the transformation of our platform development team at UCF IT by implementing <strong>Agile Development 2.0</strong> using ServiceNow’s Agile module. We moved from a mix of unstructured work requests (incidents, enhancements, catalog changes) to a centralized, story-driven development pipeline — allowing us to better plan, track, and deliver.</p>

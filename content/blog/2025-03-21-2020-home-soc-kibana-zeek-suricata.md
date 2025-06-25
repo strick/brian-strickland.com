@@ -2,6 +2,7 @@
 title: "Building a Lightweight Home SOC with Kibana, Zeek, and Suricata"
 date: "2025-03-21T20:20:00"
 slug: "home-soc-kibana-zeek-suricata"
+tags: [soc, kibana, zeek, suricata, security]
 ---
 
 <p>As part of my home cybersecurity lab, I set out to build a streamlined, resource-conscious Security Operations Center (SOC) using <strong>Zeek</strong>, <strong>Suricata</strong>, and <strong>Kibana</strong>. The goal was to get visibility into network activity, detect suspicious behavior, and eventually enrich the logs with GeoIP and custom dashboards.</p>

@@ -2,6 +2,7 @@
 title: "Comment System with Azure SQL, XSS Protection, Honeypot, and Rate Limits"
 date: "2025-06-04T22:06:00"
 slug: "blog-comments-xss-security"
+tags: [web-dev, security, azure, rate-limiting]
 ---
 
 <p>This two-night project involved building a fully working blog comment system backed by Azure SQL. The goal was to allow readers to leave comments while enforcing solid security and a clean UX. Here's how it all came together.</p>
