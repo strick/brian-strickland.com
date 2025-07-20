@@ -2,7 +2,7 @@
 ---
 title: "My CyberReady Kids Device Setup"
 date: 2025-07-02T21:00:00-04:00
-tags: ["cybersecurity", "digital minimalism", "side projects", "device management", "osint", "content creation"]
+tags: ["cyberreadykids", "cybersecurity", "digital minimalism", "side projects", "device management", "osint", "content creation"]
 categories: ["Personal Projects"]
 description: "How I separated devices for CyberReady Kids to keep work, personal, and open source intelligence activities isolated and secure."
 draft: false

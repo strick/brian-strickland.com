@@ -2,7 +2,7 @@
 title: "CyberGuardian Junior MVP: Teaching Kids to Outsmart Scams"
 date: "2025-07-19T11:32:00"
 slug: "cyberguardian-junior-mvp"
-tags: [cyberreadykids, phishing, family-cybersecurity, education, mvp]
+tags: [cyberreadykids, phishing, cybersecurity, education, mvp]
 ---
 
 <p>We just launched the MVP of <strong>CyberGuardian Junior</strong> — an interactive tool designed to help kids recognize phishing attempts in a safe, hands-on way. This was part of our July “Digital Stranger Danger” toolkit, and we tested it live with our own kids.</p>
