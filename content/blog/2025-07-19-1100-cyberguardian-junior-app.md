@@ -5,7 +5,7 @@ slug: "cyberguardian-junior-mvp"
 tags: [cyberreadykids, phishing, cybersecurity, education, mvp]
 ---
 
-<p>We just launched the MVP of <strong>CyberGuardian Junior</strong> — an interactive tool designed to help kids recognize phishing attempts in a safe, hands-on way. This was part of our July “Digital Stranger Danger” toolkit, and we tested it live with our own kids.</p>
+<p>We just launched the MVP of <strong><a target="_blank" href="https://cyberreadykids.com/guardian-app">CyberGuardian Junior</a></strong> — an interactive tool designed to help kids recognize phishing attempts in a safe, hands-on way. This was part of our July “Digital Stranger Danger” toolkit, and we tested it live with our own kids.</p>
 
 <h2>What the MVP Includes</h2>
 <ul>
