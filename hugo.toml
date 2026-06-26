@@ -1,6 +1,6 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://brian-strickland.com/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Brian Strickland'
 #theme = "PaperMod
 [taxonomies]
   tag = "tags"

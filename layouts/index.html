@@ -1,10 +1,140 @@
 {{ define "main" }}
-  <div class="row">
-    <div class="col-md-8">
-        {{ .Content }}
+<article class="portfolio">
+  <nav class="portfolio-nav" aria-label="Portfolio navigation">
+    <a class="brand-mark" href="#about" aria-label="Brian Strickland home">
+      <img class="brand-avatar" src="/headshot.jpeg" alt="Headshot of Brian Strickland" width="42" height="42">
+      <span><span class="brand-name">Brian Strickland</span><span class="brand-role">AI Automation Architect</span></span>
+    </a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#quest-log">Quest Log</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#field-notes">Field Notes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="about" aria-labelledby="hero-title">
+    <div class="hero-bg" style="background-image: url('/wizard.jpg');" role="img" aria-label="Cyber wizard at a glowing command center surrounded by code screens."></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Cyber wizard command center</p>
+        <h1 id="hero-title">Brian Strickland</h1>
+        <p class="hero-subtitle">AI Automation Architect &middot; Platform Builder &middot; Cybersecurity-Minded Systems Designer</p>
+        <p class="hero-intro">I design and build practical AI-enabled systems across ServiceNow, Azure, APIM, MCP, Copilot Studio, local models, and automation platforms. My focus is turning messy workflows into governed, reusable patterns that teams can actually operate.</p>
+        <div class="hero-actions" aria-label="Primary links">
+          <a class="button primary" href="#work">View Work</a>
+          <a class="button" href="#projects">View Projects</a>
+          <a class="button" href="https://www.linkedin.com/in/brian-s-09b89b18/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+          <a class="button ghost" href="https://github.com/strick" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+      <aside class="terminal-panel" aria-label="Current operating mode">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <p class="terminal-line"><span>$</span> architect --mode governed-ai</p>
+        <p class="terminal-line"><span>&gt;</span> identity-aware tools online</p>
+        <p class="terminal-line"><span>&gt;</span> prompts routed as reusable services</p>
+        <p class="terminal-line"><span>&gt;</span> local agents in the lab</p>
+      </aside>
     </div>
-    <div class="col-md-4">
-      {{ partial "sidebar.html" . }}
+  </section>
+
+  <section class="section command-center" aria-labelledby="command-center-title">
+    <div class="section-heading">
+      <p class="eyebrow">Command Center</p>
+      <h2 id="command-center-title">Professional systems, builder energy.</h2>
+      <p>I work at the pattern level: architecture that can be governed, observed, reused, and explained to real teams.</p>
     </div>
-  </div>
+    <div class="signal-row" role="list" aria-label="Core positioning">
+      <span role="listitem">AI architecture</span><span role="listitem">Enterprise automation</span><span role="listitem">Cybersecurity</span><span role="listitem">Home lab experiments</span><span role="listitem">Personal operating systems</span>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="section-heading"><p class="eyebrow">What I Build</p><h2 id="work-title">Systems that make AI useful, governed, and operational.</h2></div>
+    <div class="card-grid four">
+      <article class="module-card"><span class="card-code">01</span><h3>Enterprise AI Platforms</h3><p>Governed AI gateways, model access patterns, APIM, identity-aware integrations, observability, and reusable platform services.</p></article>
+      <article class="module-card"><span class="card-code">02</span><h3>Agentic Workflows</h3><p>Assistants, orchestration patterns, MCP servers, ServiceNow tools, Copilot Studio, and systems that safely act in platforms of record.</p></article>
+      <article class="module-card"><span class="card-code">03</span><h3>Local AI + Home Lab</h3><p>Local models, private agents, Raspberry Pi experiments, Home Assistant, personal automation, and offline/local-first AI patterns.</p></article>
+      <article class="module-card"><span class="card-code">04</span><h3>Cybersecurity + Architecture</h3><p>Security-minded design, privacy boundaries, identity, governance, risk reduction, and practical controls for real systems.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="section-heading"><p class="eyebrow">Featured Builds</p><h2 id="projects-title">Architecture patterns, local experiments, and personal systems.</h2></div>
+    <div class="project-matrix">
+      <article class="project-card"><p class="project-category">Enterprise AI / Architecture</p><h3>AI Integration Layer</h3><p>A practical architecture pattern for routing AI-enabled workflows through governed APIs, reusable prompts, policy enforcement, and observable integration points.</p><div class="tag-row"><span>APIM</span><span>governance</span><span>observability</span></div></article>
+      <article class="project-card"><p class="project-category">Enterprise AI / Architecture</p><h3>ServiceNow AI Assistant Patterns</h3><p>Experiments and architecture patterns for connecting natural-language assistants to ITSM workflows while preserving identity, permissions, and auditability.</p><div class="tag-row"><span>ServiceNow</span><span>identity</span><span>auditability</span></div></article>
+      <article class="project-card"><p class="project-category">Enterprise AI / Architecture</p><h3>APIM / MCP Gateway Experiments</h3><p>Research and prototypes around exposing enterprise APIs as agent-consumable tools through gateway patterns, policies, and structured contracts.</p><div class="tag-row"><span>MCP</span><span>API contracts</span><span>policies</span></div></article>
+      <article class="project-card"><p class="project-category">Enterprise AI / Architecture</p><h3>Prompt-as-a-Service</h3><p>A reusable pattern for turning repeatable AI tasks into governed services with stable contracts, configuration, and routing.</p><div class="tag-row"><span>prompt systems</span><span>routing</span><span>reuse</span></div></article>
+      <article class="project-card accent"><p class="project-category">Personal Systems</p><h3>Thor Stack</h3><p>A local-first AI fitness and health system for logging workouts in natural language, tracking progress, and experimenting with personal AI coaching patterns.</p><div class="tag-row"><span>local-first</span><span>fitness</span><span>AI coaching</span></div></article>
+      <article class="project-card"><p class="project-category">Local AI / Home Lab</p><h3>Hermes</h3><p>A home AI assistant and local orchestration layer for experimenting with private agents, home automation, personal workflows, and skill-based tool use.</p><div class="tag-row"><span>home lab</span><span>agents</span><span>automation</span></div></article>
+      <article class="project-card"><p class="project-category">Personal Systems</p><h3>Grocery Capture Assistant</h3><p>A household automation project for capturing grocery requests from natural language and turning them into structured lists and repeatable routines.</p><div class="tag-row"><span>structured capture</span><span>routines</span><span>Node.js</span></div></article>
+      <article class="project-card"><p class="project-category">Writing / Learning / Experiments</p><h3>AI Quick Feeds</h3><p>Short daily AI updates for fast readers, built around summarization, curation, and lightweight publishing patterns.</p><div class="tag-row"><span>summaries</span><span>publishing</span><span>AI news</span></div></article>
+      <article class="project-card"><p class="project-category">Writing / Learning / Experiments</p><h3><a href="https://github.com/strick/wp-for-everyone" target="_blank" rel="noopener noreferrer">WordPress for Everyone</a></h3><p>An Azure-based self-service site generator focused on making website creation more accessible and repeatable.</p><div class="tag-row"><span>Azure</span><span>automation</span><span>web</span></div></article>
+      <article class="project-card"><p class="project-category">Writing / Learning / Experiments</p><h3>Great Thoughts Treasury</h3><p>A large quote and author collection rebuilt across generations of web architecture, from Drupal roots to microservice experiments.</p><div class="tag-row"><span>content systems</span><span>APIs</span><span>migration</span></div></article>
+      <article class="project-card"><p class="project-category">Cybersecurity + Learning</p><h3><a href="https://github.com/strick/false-incident-finder/blob/main/Machine_Learning.pdf" target="_blank" rel="noopener noreferrer">False Incident Finder</a></h3><p>A machine-learning exploration of ticket classification and signal detection, presented as a research artifact.</p><div class="tag-row"><span>ML</span><span>classification</span><span>research</span></div></article>
+      <article class="project-card"><p class="project-category">Cybersecurity + Learning</p><h3><a href="https://github.com/strick/cis6614-sql-injection-analyzer/blob/main/CIS_6614___NoSQLI.pdf" target="_blank" rel="noopener noreferrer">MEN Injection Guard</a></h3><p>A NoSQL injection scanner concept for the MEN stack, built as a security research and learning project.</p><div class="tag-row"><span>NoSQL</span><span>security</span><span>analysis</span></div></article>
+    </div>
+  </section>
+
+  <section class="section quest-section" id="quest-log" aria-labelledby="quest-title">
+    <div class="section-heading"><p class="eyebrow">Quest Log</p><h2 id="quest-title">The backlog behind the brand.</h2></div>
+    <div class="quest-list">
+      <article class="quest-card main-quest"><span>Main Quest</span><h3>Build practical enterprise AI architecture</h3><p>Design patterns, platforms, and workflows that let teams use AI safely and productively in real systems.</p></article>
+      <article class="quest-card"><span>Side Quest</span><h3>Thor Mode</h3><p>Build a local-first AI workout and health system that turns fitness tracking into a personal operating system.</p></article>
+      <article class="quest-card"><span>Side Quest</span><h3>Hermes Home Lab</h3><p>Experiment with local agents, private automation, Raspberry Pi systems, home assistant tooling, and offline-first AI patterns.</p></article>
+      <article class="quest-card"><span>Side Quest</span><h3>Gaming Worlds & Systems Thinking</h3><p>Use RPGs, skill trees, quests, progression systems, and world-building as inspiration for better software and personal systems.</p></article>
+      <article class="quest-card"><span>Side Quest</span><h3>Cybersecurity Mastery</h3><p>Apply security, privacy, identity, and governance thinking to every AI and automation pattern.</p></article>
+    </div>
+  </section>
+
+  <section class="section skill-section" id="skills" aria-labelledby="skills-title">
+    <div class="section-heading"><p class="eyebrow">Skill Tree</p><h2 id="skills-title">Branches I keep leveling.</h2><p>A compact map of the capabilities I combine when I design, secure, and build AI-enabled systems.</p></div>
+    <div class="skill-tree" aria-label="Brian Strickland skill tree">
+      <div class="skill-core">
+        <span>Core Node</span>
+        <h3>AI Systems Architecture</h3>
+        <p>Governed automation, secure integration, practical agents, and builder-grade execution.</p>
+      </div>
+      <article class="skill-branch"><span class="branch-code">INT</span><h3>AI Architecture</h3><ul><li>LLM integration</li><li>agent patterns</li><li>MCP</li><li>prompt-as-a-service</li><li>model routing</li><li>evaluations</li><li>AI gateways</li><li>orchestration</li></ul></article>
+      <article class="skill-branch"><span class="branch-code">PLT</span><h3>Platforms</h3><ul><li>Azure</li><li>Azure API Management</li><li>ServiceNow</li><li>Copilot Studio</li><li>Power Platform</li><li>Teams</li><li>CI/CD</li><li>Docker</li><li>APIs</li></ul></article>
+      <article class="skill-branch"><span class="branch-code">SEC</span><h3>Security</h3><ul><li>CISSP</li><li>Security+</li><li>identity</li><li>governance</li><li>privacy</li><li>secure integration patterns</li><li>risk reduction</li><li>auditability</li></ul></article>
+      <article class="skill-branch"><span class="branch-code">BLD</span><h3>Builder Stack</h3><ul><li>TypeScript</li><li>Python</li><li>Node.js</li><li>APIs</li><li>Docker</li><li>SQLite</li><li>local LLMs</li><li>Raspberry Pi</li><li>home lab systems</li></ul></article>
+      <article class="skill-branch"><span class="branch-code">SYS</span><h3>Personal Systems</h3><ul><li>Thor workout tracker</li><li>home automation</li><li>local agents</li><li>gaming-inspired productivity</li><li>natural-language logging</li><li>personal dashboards</li></ul></article>
+    </div>
+  </section>
+
+  <section class="section split-section" aria-labelledby="gaming-title">
+    <div><p class="eyebrow">Systems Thinking</p><h2 id="gaming-title">Games as architecture practice.</h2></div>
+    <p>I enjoy RPGs and systems-heavy games because they mirror how I think about architecture: progression, constraints, skill trees, quests, feedback loops, and world-building. Games like Skyrim, Elder Scrolls, Baldur's Gate 3, Diablo, Zelda, Mario, and Nintendo history influence how I think about personal systems, automation, and learning paths.</p>
+  </section>
+
+  <section class="section thor-mode" aria-labelledby="thor-title">
+    <div class="thor-orbit" aria-hidden="true"></div>
+    <div><p class="eyebrow">Power-Up Screen</p><h2 id="thor-title">Thor Mode</h2><p class="large-copy">A local-first AI fitness and personal operating system.</p><p>Thor Stack is my experiment in turning workouts, health habits, and progress tracking into a structured personal system. The goal is to log activity naturally, track progress over time, and explore how local AI, APIs, and personal data can support better training without giving up ownership of the data.</p></div>
+  </section>
+
+  <section class="section credentials" id="education" aria-labelledby="education-title">
+    <div class="section-heading"><p class="eyebrow">Education</p><h2 id="education-title">Academic foundation.</h2></div>
+    <div class="credential-list"><article><h3>M.S. Cyber Security and Privacy</h3><p>University of Central Florida</p></article><article><h3>M.S. Computer Science</h3><p>University of Central Florida</p></article><article><h3>B.S. Computer Science</h3><p>University of Central Florida</p></article></div>
+  </section>
+
+  <section class="section credentials" id="certifications" aria-labelledby="certifications-title">
+    <div class="section-heading"><p class="eyebrow">Certifications</p><h2 id="certifications-title">Credibility markers.</h2></div>
+    <div class="cert-grid"><span>CISSP</span><span>Microsoft Certified: DevOps Engineer Expert</span><span>Microsoft Certified: Azure Solutions Architect Expert</span><span>CompTIA Security+</span><span>Certified Scrum Product Owner</span><span>Certified Scrum Master</span></div>
+  </section>
+
+  <section class="section field-notes" id="field-notes" aria-labelledby="field-title">
+    <div class="section-heading"><p class="eyebrow">Dispatches</p><h2 id="field-title">Field Notes</h2><p>Notes from an architect-builder: experiments, repairs, security learning, and the occasional hard-won deployment lesson.</p></div>
+    <div class="note-links"><a href="/blog/">Read the blog</a><a href="https://www.servicenow.com/community/user/viewprofilepage/user-id/265695#custom-profile-activity-posts" target="_blank" rel="noopener noreferrer">ServiceNow Community</a><a href="https://github.com/strick" target="_blank" rel="noopener noreferrer">GitHub Projects</a><a href="https://www.linkedin.com/in/brian-s-09b89b18/" target="_blank" rel="noopener noreferrer">LinkedIn Updates</a></div>
+  </section>
+
+  <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+    <div><p class="eyebrow">Open Channel</p><h2 id="contact-title">Let's connect around practical AI systems.</h2><p>I'm interested in AI architecture, automation platforms, cybersecurity-minded integration, local AI experiments, and systems that help people get real work done.</p></div>
+    <div class="contact-actions"><a class="button primary" href="https://www.linkedin.com/in/brian-s-09b89b18/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="button" href="https://github.com/strick" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+  </section>
+</article>
 {{ end }}
